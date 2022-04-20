@@ -6,23 +6,10 @@
 
 # Emily Hoang
 # 4/5/2022 3-state nearest neighbor cellular automata
-
+#%%
 import IPython.core.page
 from numpy import *
 from matplotlib import pyplot as plt
-#get_ipython().run_line_magic('matplotlib', 'inline')
-
-
-# In[2]:
-
-
-# def page_printer(data, start=0, screen_lines=0, pager_cmd=None):
-#    if isinstance(data, dict):
-#        data = data['text/plain']
-#    print(data)
-
-
-#IPython.core.page.page = page_printer
 
 
 # ## Non-spaghetti (using functions and a class)
@@ -42,11 +29,9 @@ class methods:
             raise ValueError(
                 "Error, number too large (greater than 19682) or negative")
         else:
-            while num > 0:
+            while len(rule) < 9: # Took Rodrigo's advice from code review and made the padding loop more efficient
                 rule.append(int(num % 3))
                 num = floor(num/3)
-            while len(rule) < 9:  # Padding
-                rule.append(0)
         return rule[::-1]
 
     def lookup_table(rule_num):
@@ -126,11 +111,9 @@ plt.show()
 
 num = 8105
 rule = []
-while num > 0:  # Converts number to rule (list)
+while len(rule) < 9:  # Converts number to rule (list)
     rule.append(int(num % 3))
     num = floor(num/3)
-while len(rule) < 9:
-    rule.append(0)
 rule = rule[::-1]
 
 
@@ -185,9 +168,3 @@ while count < num_rows:
 plt.figure(figsize=(12, 12))
 plt.imshow(spacetime_field, cmap=plt.cm.gist_stern, interpolation='nearest')
 plt.show()
-
-
-# In[ ]:
-
-
-# !jupyter nbconvert --to script homework1.ipynb
