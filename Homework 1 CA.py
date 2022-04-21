@@ -142,7 +142,7 @@ count = 1
 num_rows = 100
 
 init_neighborhood = []
-for i in range(len(init_row)):  # Creates a list of initial neighbors
+for i in range(len(init_row)):  # Converts initial neighbor integer into a list
     init_neighborhood.append([init_row[i-1], init_row[i]])
 
 while count < num_rows:
